@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
-	
+	public static boolean debugging = true;
 	//Timer related variables
 	int waveTimer = 5; //each wave of enemies is 20s
 	long ellapseTime = 0;
@@ -34,16 +34,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //	Music soundBang = new Music("bang.wav", false);
 //	Music soundHaha = new Music("haha.wav", false);
 	
+	Camera camera = new Camera();
+	Camera camera2 = new Camera();
+	Sprite sp = new Sprite();
 	//frame width/height
 	int width = 600;
-	int height = 600;	
+	int height = 800;	
 	
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		
+		//paint the other objects on the screen
+		camera.paint(g);
+		camera2.paint(g);
+		sp.paint(g);
 
 	}
-	
 	public static void main(String[] arg) {
 		Frame f = new Frame();
 		
@@ -59,7 +66,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.addKeyListener(this);
 	
 		backgroundMusic.play();
-
+		
+		/*
+		 * set up any 1d arrays here!!!
+		 */
 	
 		
 		//the cursor image must be outside of the src folder

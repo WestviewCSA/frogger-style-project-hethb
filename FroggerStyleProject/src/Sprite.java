@@ -17,10 +17,10 @@ public class Sprite{
 	double scaleHeight = 1.0; 		//change to scale image
 
 	public Sprite() {
-		forward 	= getImage("/imgs/"+"forwardFile.png"); //load the image for Tree
-		backward 	= getImage("/imgs/"+"backward.png"); //load the image for Tree
-		left 		= getImage("/imgs/"+"left.png"); //load the image for Tree
-		right 		= getImage("/imgs/"+"right.png"); //load the image for Tree
+		forward 	= getImage("/imgs/"+"camera.png"); //load the image for Tree
+//		backward 	= getImage("/imgs/"+"backward.png"); //load the image for Tree
+//		left 		= getImage("/imgs/"+"left.png"); //load the image for Tree
+//		right 		= getImage("/imgs/"+"right.png"); //load the image for Tree
 
 		//alter these
 		width = 0;
