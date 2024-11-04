@@ -15,14 +15,14 @@ public class Camera {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = 1.0;
-	double scaleHeight = 1.0;
+	double scaleWidth = .2;
+	double scaleHeight = .2;
 	public Camera() {
-		forward 	= getImage("/imgs/"+"camera.png"); //load the image for Tree
+		forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
 		width = 60;
 		height = 60;
-		x = 600/2 - width/2;
-		y = 600;
+		x = 0;
+		y = 0;
 		vx = 0;
 		vy = 0;
 		
@@ -30,6 +30,9 @@ public class Camera {
 		
 		init(x,y);
 	}
+	
+	
+	
 	
 	public Camera(int x, int y) {
 		this();
@@ -51,19 +54,21 @@ public class Camera {
 			}
 	}
 	
-	
 	private void init(double a, double b) {
-		tx.setToTranslation(a,b);
+		tx.setToTranslation(a, b);
 		tx.scale(scaleWidth, scaleHeight);
 	}
-	
+
 	private Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Camera.class.getResource(path);
-		}catch(Exception e) {
+			URL imageURL = Sprite.class.getResource(path);
+			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return tempImage;
 	}
+	
+ 
 }

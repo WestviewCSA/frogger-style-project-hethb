@@ -13,8 +13,8 @@ public class Sprite{
 	int width, height;
 	int x, y;						//position of the object
 	int vx, vy;						//movement variables
-	double scaleWidth = 1.0;		//change to scale image
-	double scaleHeight = 1.0; 		//change to scale image
+	double scaleWidth = .11;		//change to scale image
+	double scaleHeight = .11; 		//change to scale image
 
 	public Sprite() {
 		forward 	= getImage("/imgs/"+"camera.png"); //load the image for Tree

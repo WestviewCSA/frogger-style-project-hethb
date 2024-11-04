@@ -40,7 +40,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	//frame width/height
 	int width = 600;
 	int height = 800;	
-	
+	Sprite sp1 = new Sprite();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -48,7 +48,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//paint the other objects on the screen
 		camera.paint(g);
 		camera2.paint(g);
-		sp.paint(g);
+	 
+		//sp.paint(g);
 
 	}
 	public static void main(String[] arg) {
