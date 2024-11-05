@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Lebron {
+public class Background {
 	private Image forward;
 	private AffineTransform tx;
 	
@@ -15,12 +15,12 @@ public class Lebron {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = .2;
-	double scaleHeight = .2;
-	public Lebron() {
-		forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
-		width = 60;
-		height = 60;
+	double scaleWidth = .5;
+	double scaleHeight = .7;
+	public Background() {
+		forward = getImage("/imgs/"+"sr2b11df1ba4eaws3.gif"); //load the image for Tree
+		width = 600;
+		height = 900;
 		x = 0;
 		y = 0;
 		vx = 0;
@@ -34,7 +34,7 @@ public class Lebron {
 	
 	
 	
-	public Lebron(int x, int y) {
+	public Background(int x, int y) {
 		this();
 		this.x = x;
 		this.y = y;

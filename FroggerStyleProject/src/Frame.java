@@ -37,17 +37,32 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Camera camera = new Camera();
 	Camera camera2 = new Camera();
 	Sprite sp = new Sprite();
+	Background bg = new Background();
+	
+	//row of camera objects
+	CameraScrolling[] row1 = new CameraScrolling[10];
+	
+	
+	
+	
 	//frame width/height
-	int width = 600;
-	int height = 800;	
-	Sprite sp1 = new Sprite();
+	static int width = 600;
+	static int height = 800;	
+	//Sprite sp1 = new Sprite();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		
 		//paint the other objects on the screen
+		bg.paint(g);
 		camera.paint(g);
 		camera2.paint(g);
+		
+		
+		//have the row1 objects paint on the screen
+		for(CameraScrolling obj : row1) {
+			obj.paint(g);
+		}
 	 
 		//sp.paint(g);
 
@@ -66,11 +81,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
  		f.addMouseListener(this);
 		f.addKeyListener(this);
 	
-		backgroundMusic.play();
+		//backgroundMusic.play();
 		
 		/*
 		 * set up any 1d arrays here!!!
+		 * create the objects that go in them 
 		 */
+		
+		for(int i = 0; i < row1.length; i++) {
+			row1[i] = new CameraScrolling(i*150 ,300);
+			
+		}
 	
 		
 		//the cursor image must be outside of the src folder
