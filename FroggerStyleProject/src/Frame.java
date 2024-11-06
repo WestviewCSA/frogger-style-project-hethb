@@ -38,9 +38,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Camera camera2 = new Camera();
 	Sprite sp = new Sprite();
 	Background bg = new Background();
+	Bron player = new Bron();
 	
 	//row of camera objects
 	CameraScrolling[] row1 = new CameraScrolling[10];
+	CameraScrolling2[] row2 = new CameraScrolling2[10];
 	
 	
 	
@@ -57,14 +59,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		bg.paint(g);
 		camera.paint(g);
 		camera2.paint(g);
+		player.paint(g);
 		
 		
 		//have the row1 objects paint on the screen
 		for(CameraScrolling obj : row1) {
 			obj.paint(g);
 		}
+		
+		for(CameraScrolling2 obj : row2) {
+			obj.paint(g);
+		}
 	 
 		//sp.paint(g);
+		
+		//collision detection
+		for( CameraScrolling obj : row1) {
+			if(obj.collided(player)) {
+				System.out.println("HTIS!");
+			}
+		}
 
 	}
 	public static void main(String[] arg) {
@@ -91,6 +105,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(int i = 0; i < row1.length; i++) {
 			row1[i] = new CameraScrolling(i*150 ,300);
 			
+		}
+		
+		for(int i = 0; i < row2.length; i++) {
+			row2[i] = new CameraScrolling2(i*150, 300);
 		}
 	
 		
@@ -150,7 +168,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println(arg0.getKeyCode());
+		//w is 87
+		if(arg0.getKeyCode() == 87) {
+			//move main character up
+			player.move(0);
+		}
 		
+		if(arg0.getKeyCode() == 83) {
+			//move main character down
+			player.move(1);
+		}
 		
 		
 	}

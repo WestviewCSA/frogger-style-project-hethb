@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Lebron {
+public class CameraScrolling2 {
 	private Image forward;
 	private AffineTransform tx;
 	
@@ -15,15 +15,15 @@ public class Lebron {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = .2;
-	double scaleHeight = .2;
-	public Lebron() {
+	double scaleWidth = .15;
+	double scaleHeight = .15;
+	public CameraScrolling2() {
 		forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
 		width = 60;
 		height = 60;
-		x = 0;
+		x = -width;
 		y = 0;
-		vx = 0;
+		vx = 5;
 		vy = 0;
 		
 		tx = AffineTransform.getTranslateInstance(0,0);
@@ -34,7 +34,7 @@ public class Lebron {
 	
 	
 	
-	public Lebron(int x, int y) {
+	public CameraScrolling2(int x, int y) {
 		this();
 		this.x = x;
 		this.y = y;
@@ -44,6 +44,12 @@ public class Lebron {
 		Graphics2D g2 = (Graphics2D) g;
 		x+=vx;
 		y+=vy;
+		
+		//for infinite scrolling - teleport to the other side
+		//once it leaves the other side
+		if(x > 600) {
+			x = -150;
+		}
 		
 		init(x,y);
 		g2.drawImage(forward, tx, null);

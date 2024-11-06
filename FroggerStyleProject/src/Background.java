@@ -18,7 +18,7 @@ public class Background {
 	double scaleWidth = .5;
 	double scaleHeight = .7;
 	public Background() {
-		forward = getImage("/imgs/"+"sr2b11df1ba4eaws3.gif"); //load the image for Tree
+		forward = getImage("/imgs/"+"bg.jpg"); //load the image for Tree
 		width = 600;
 		height = 900;
 		x = 0;

@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
@@ -40,6 +41,27 @@ public class CameraScrolling {
 		this.y = y;
 	}
 	
+	public boolean collided(Bron character) {
+		//represent each object as a rect 
+		//check if they are intersecting
+		Rectangle main = new Rectangle(
+				character.getX(),
+				character.getY(),
+				character.getWidth(),
+				character.getHeight()
+				);
+		Rectangle thisObject = new Rectangle(x, y, width, height);
+		
+		
+		//user built in method to check intersection (collision)
+		return main.intersects(thisObject);
+				
+			
+				
+
+	}
+	
+	
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		x+=vx;
@@ -75,6 +97,10 @@ public class CameraScrolling {
 		}
 		return tempImage;
 	}
+
+
+
+
 	
  
 }

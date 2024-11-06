@@ -2,11 +2,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Camera {
+public class Bron {
 	private Image forward;
 	private AffineTransform tx;
 	
@@ -15,10 +16,10 @@ public class Camera {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = .2;
-	double scaleHeight = .2;
-	public Camera() {
-		forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
+	double scaleWidth = 1.2;
+	double scaleHeight = 1.2;
+	public Bron() {
+		forward = getImage("/imgs/"+"bronnn.png"); //load the image for Tree
 		width = 60;
 		height = 60;
 		x = 0;
@@ -31,18 +32,31 @@ public class Camera {
 		init(x,y);
 	}
 	
+	/*
+	 * collision detection with main character class
+	 */
 	
-	
-	
-	public Camera(int x, int y) {
-		this();
-		this.x = x;
-		this.y = y;
+	public boolean collided(Camera character) {
+		//represent each object as a rect 
+		//check if they are intersecting
+		Rectangle main = new Rectangle(
+				character.getX(),
+				character.getY(),
+				character.getWidth(),
+				character.getHeight()
+				);
+		Rectangle thisObject = new Rectangle(x, y, width, height);
+		
+		
+		//user built in method to check intersection (collision)
+		return main.intersects(thisObject);
+				
+			
+				
+
 	}
 	
-	
-	
-	//getters!!
+	//getters
 	public int getX() {
 		return x;
 	}
@@ -51,16 +65,39 @@ public class Camera {
 		return y;
 	}
 	
-	public int getWidth() {
-		return width;
-	}
-	
 	public int getHeight() {
 		return height;
 	}
 	
+	public int getWidth() {
+		return width;
+	}
 	
+	public Bron(int x, int y) {
+		this();
+		this.x = x;
+		this.y = y;
+	}
 	
+	public void move(int dir) {
+		switch(dir) {
+		
+		case 0: //hop up
+			
+			y -= height; // move up a body length
+			break;
+		case 1: //hop down
+			y+=height; //move down
+			break;
+		case 2: //hop left
+			x -= width;
+			break;
+		case 3: //hop right
+			x += width;
+			break;
+		
+		}
+	}
 	
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
