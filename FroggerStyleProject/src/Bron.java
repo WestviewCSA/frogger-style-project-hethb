@@ -16,14 +16,14 @@ public class Bron {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = 1.2;
-	double scaleHeight = 1.2;
+	double scaleWidth = 1;
+	double scaleHeight = 1;
 	public Bron() {
-		forward = getImage("/imgs/"+"bronnn.png"); //load the image for Tree
+		forward = getImage("/imgs/"+"bronnn2.png"); //load the image for Tree
 		width = 60;
 		height = 60;
-		x = 0;
-		y = 0;
+		x = Frame.width/2;
+		y = Frame.height - height*2;
 		vx = 0;
 		vy = 0;
 		
@@ -45,7 +45,7 @@ public class Bron {
 				character.getWidth(),
 				character.getHeight()
 				);
-		Rectangle thisObject = new Rectangle(x, y, width, height);
+		Rectangle thisObject = new Rectangle(x,  y-1,  width,  height+35);
 		
 		
 		//user built in method to check intersection (collision)
@@ -109,7 +109,7 @@ public class Bron {
 			
 		if(Frame.debugging) {
 				g.setColor(Color.green);
-				g.drawRect(x,  y,  width,  height);
+				g.drawRect(x,  y-1,  width,  height+35);
 			}
 	}
 	

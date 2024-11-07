@@ -19,7 +19,7 @@ public class CameraScrolling {
 	double scaleWidth = .15;
 	double scaleHeight = .15;
 	public CameraScrolling() {
-		forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
+		forward = getImage("/imgs/"+"camera2.png"); //load the image for Tree
 		width = 60;
 		height = 60;
 		x = -width;
@@ -50,7 +50,7 @@ public class CameraScrolling {
 				character.getWidth(),
 				character.getHeight()
 				);
-		Rectangle thisObject = new Rectangle(x, y, width, height);
+		Rectangle thisObject = new Rectangle(x-7,  y,  width,  height+70);
 		
 		
 		//user built in method to check intersection (collision)
@@ -78,7 +78,7 @@ public class CameraScrolling {
 			
 		if(Frame.debugging) {
 				g.setColor(Color.green);
-				g.drawRect(x,  y,  width,  height);
+				g.drawRect(x-7,  y,  width,  height+70);
 			}
 	}
 	

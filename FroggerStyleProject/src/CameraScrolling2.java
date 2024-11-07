@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
@@ -18,12 +19,12 @@ public class CameraScrolling2 {
 	double scaleWidth = .15;
 	double scaleHeight = .15;
 	public CameraScrolling2() {
-		forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
+		forward = getImage("/imgs/"+"mj.png"); //load the image for Tree
 		width = 60;
 		height = 60;
 		x = -width;
-		y = 0;
-		vx = 5;
+		y = 10;
+		vx = 3;
 		vy = 0;
 		
 		tx = AffineTransform.getTranslateInstance(0,0);
@@ -39,6 +40,27 @@ public class CameraScrolling2 {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public boolean collided(Bron character) {
+		//represent each object as a rect 
+		//check if they are intersecting
+		Rectangle main = new Rectangle(
+				character.getX(),
+				character.getY(),
+				character.getWidth(),
+				character.getHeight()
+				);
+		Rectangle thisObject = new Rectangle(x,  y,  width-10,  height+35);
+		
+		
+		//user built in method to check intersection (collision)
+		return main.intersects(thisObject);
+				
+			
+				
+
+	}
+	
 	
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -56,7 +78,7 @@ public class CameraScrolling2 {
 			
 		if(Frame.debugging) {
 				g.setColor(Color.green);
-				g.drawRect(x,  y,  width,  height);
+				g.drawRect(x,  y,  width-10,  height+35);
 			}
 	}
 	

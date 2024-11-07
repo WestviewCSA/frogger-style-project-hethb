@@ -57,8 +57,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		//paint the other objects on the screen
 		bg.paint(g);
-		camera.paint(g);
-		camera2.paint(g);
+		//camera.paint(g);
+		//camera2.paint(g);
 		player.paint(g);
 		
 		
@@ -75,6 +75,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		//collision detection
 		for( CameraScrolling obj : row1) {
+			if(obj.collided(player)) {
+				System.out.println("HTIS!");
+			}
+		}
+		
+		
+		for( CameraScrolling2 obj : row2) {
 			if(obj.collided(player)) {
 				System.out.println("HTIS!");
 			}
@@ -103,12 +110,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		 */
 		
 		for(int i = 0; i < row1.length; i++) {
-			row1[i] = new CameraScrolling(i*150 ,300);
+			row1[i] = new CameraScrolling(i*250 ,200);
 			
 		}
 		
 		for(int i = 0; i < row2.length; i++) {
-			row2[i] = new CameraScrolling2(i*150, 300);
+			row2[i] = new CameraScrolling2(i*250, 500);
 		}
 	
 		
@@ -169,17 +176,25 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		// TODO Auto-generated method stub
 		System.out.println(arg0.getKeyCode());
 		//w is 87
-		if(arg0.getKeyCode() == 87) {
+		if(arg0.getKeyCode() == 38) {
 			//move main character up
 			player.move(0);
 		}
 		
-		if(arg0.getKeyCode() == 83) {
+		if(arg0.getKeyCode() == 40) {
 			//move main character down
 			player.move(1);
 		}
 		
+		if(arg0.getKeyCode() == 37) {
+			//move main character down
+			player.move(2);
+		}
 		
+		if(arg0.getKeyCode() == 39) {
+			//move main character down
+			player.move(3);
+		}
 	}
 
 	@Override
