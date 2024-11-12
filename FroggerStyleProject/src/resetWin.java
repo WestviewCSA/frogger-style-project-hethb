@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Bron {
+public class resetWin {
 	private Image forward;
 	private AffineTransform tx;
 	
@@ -16,14 +16,14 @@ public class Bron {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = 1;
-	double scaleHeight = 1;
-	public Bron() {
-		forward = getImage("/imgs/"+"bronnn2.png"); //load the image for Tree
+	double scaleWidth = .2;
+	double scaleHeight = .2;
+	public resetWin() {
+		//forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
 		width = 60;
 		height = 60;
-		x = Frame.width/2;
-		y = Frame.height - height*2;
+		x = 0;
+		y = 0;
 		vx = 0;
 		vy = 0;
 		
@@ -31,10 +31,6 @@ public class Bron {
 		
 		init(x,y);
 	}
-	
-	/*
-	 * collision detection with main character class
-	 */
 	
 	public boolean collided(Camera character) {
 		//represent each object as a rect 
@@ -45,18 +41,25 @@ public class Bron {
 				character.getWidth(),
 				character.getHeight()
 				);
-		Rectangle thisObject = new Rectangle(x,  y-1,  width,  height+35);
+		Rectangle thisObject = new Rectangle(0,  0,  600,  50);
 		
 		
 		//user built in method to check intersection (collision)
 		return main.intersects(thisObject);
-				
-			
-				
-
+	
 	}
 	
-	//getters
+	
+	
+	public resetWin(int x, int y) {
+		this();
+		this.x = x;
+		this.y = y;
+	}
+	
+	
+	
+	//getters!!
 	public int getX() {
 		return x;
 	}
@@ -65,47 +68,16 @@ public class Bron {
 		return y;
 	}
 	
-	public int getHeight() {
-		return height;
-	}
-	
 	public int getWidth() {
 		return width;
 	}
 	
-	public void setY(int bronY) {
-		bronY = y;
+	public int getHeight() {
+		return height;
 	}
 	
-	public void setX(int bronX) {
-		bronX = x;
-	}
 	
-	public Bron(int x, int y) {
-		this();
-		this.x = x;
-		this.y = y;
-	}
 	
-	public void move(int dir) {
-		switch(dir) {
-		
-		case 0: //hop up
-			
-			y -= height; // move up a body length
-			break;
-		case 1: //hop down
-			y+=height; //move down
-			break;
-		case 2: //hop left
-			x -= width;
-			break;
-		case 3: //hop right
-			x += width;
-			break;
-		
-		}
-	}
 	
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -117,7 +89,7 @@ public class Bron {
 			
 		if(Frame.debugging) {
 				g.setColor(Color.green);
-				g.drawRect(x,  y-1,  width,  height+35);
+				g.drawRect(0,  0,  600,  50);
 			}
 	}
 	

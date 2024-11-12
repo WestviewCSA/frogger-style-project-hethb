@@ -39,10 +39,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Sprite sp = new Sprite();
 	Background bg = new Background();
 	Bron player = new Bron();
+	resetWin winner = new resetWin();
 	
 	//row of camera objects
 	CameraScrolling[] row1 = new CameraScrolling[10];
 	CameraScrolling2[] row2 = new CameraScrolling2[10];
+	
 	
 	
 	
@@ -60,6 +62,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//camera.paint(g);
 		//camera2.paint(g);
 		player.paint(g);
+		winner.paint(g);
 		
 		
 		//have the row1 objects paint on the screen
@@ -81,11 +84,22 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		
 		
+		
 		for( CameraScrolling2 obj : row2) {
 			if(obj.collided(player)) {
 				System.out.println("HTIS!");
 			}
 		}
+		
+		if(player.getY() <= 60) {
+			System.out.println("WIN!");
+			player.setX(Frame.width/2);
+			player.setY(Frame.height - height*2);
+			
+		}
+		
+		
+		
 
 	}
 	public static void main(String[] arg) {
@@ -117,6 +131,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(int i = 0; i < row2.length; i++) {
 			row2[i] = new CameraScrolling2(i*250, 500);
 		}
+		
+		
+		
 	
 		
 		//the cursor image must be outside of the src folder
@@ -179,6 +196,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if(arg0.getKeyCode() == 38) {
 			//move main character up
 			player.move(0);
+			System.out.println(player.getY());
 		}
 		
 		if(arg0.getKeyCode() == 40) {
