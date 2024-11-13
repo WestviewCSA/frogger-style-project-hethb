@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class CameraScrolling {
+public class CameraScrolling4 {
 	private Image forward;
 	private AffineTransform tx;
 	
@@ -18,8 +18,8 @@ public class CameraScrolling {
 	int vx, vy;
 	double scaleWidth = .1;
 	double scaleHeight = .1;
-	public CameraScrolling() {
-		forward = getImage("/imgs/"+"camera2.png"); //load the image for Tree
+	public CameraScrolling4() {
+		forward = getImage("/imgs/"+"boat.png"); //load the image for Tree
 		width = 60;
 		height = 60;
 		x = -width;
@@ -35,7 +35,7 @@ public class CameraScrolling {
 	
 	
 	
-	public CameraScrolling(int x, int y) {
+	public CameraScrolling4(int x, int y) {
 		this();
 		this.x = x;
 		this.y = y;
@@ -78,7 +78,7 @@ public class CameraScrolling {
 			
 		if(Frame.debugging) {
 				g.setColor(Color.green);
-				g.drawRect(x-2,  y,  width-20,  height+22);
+				g.drawRect(x-2,  y,  width-22,  height+10);
 			}
 	}
 	

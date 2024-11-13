@@ -16,10 +16,10 @@ public class resetWin {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = .2;
-	double scaleHeight = .2;
+	double scaleWidth = 0;
+	double scaleHeight = 0;
 	public resetWin() {
-		//forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
+		forward = getImage("/imgs/"+"camera.png"); //load the image for Tree
 		width = 60;
 		height = 60;
 		x = 0;

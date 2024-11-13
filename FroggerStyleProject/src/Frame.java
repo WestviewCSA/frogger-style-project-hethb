@@ -39,11 +39,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Sprite sp = new Sprite();
 	Background bg = new Background();
 	Bron player = new Bron();
-	resetWin winner = new resetWin();
 	
 	//row of camera objects
 	CameraScrolling[] row1 = new CameraScrolling[10];
 	CameraScrolling2[] row2 = new CameraScrolling2[10];
+	CameraScrolling3[] row3 = new CameraScrolling3[10];
+	CameraScrolling4[] row4 = new CameraScrolling4[10];
 	
 	
 	
@@ -62,7 +63,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//camera.paint(g);
 		//camera2.paint(g);
 		player.paint(g);
-		winner.paint(g);
 		
 		
 		//have the row1 objects paint on the screen
@@ -73,6 +73,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(CameraScrolling2 obj : row2) {
 			obj.paint(g);
 		}
+		
+		
+		
+		for(CameraScrolling3 obj : row3) {
+			obj.paint(g);
+		}
+		
+		for(CameraScrolling4 obj : row4) {
+			obj.paint(g);
+		}
+		
 	 
 		//sp.paint(g);
 		
@@ -91,6 +102,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			}
 		}
 		
+		
+		
 		if(player.getY() <= 60) {
 			System.out.println("WIN!");
 			player.setX(Frame.width/2);
@@ -98,6 +111,18 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 		}
 		
+		
+		for( CameraScrolling3 obj : row3) {
+			if(obj.collided(player)) {
+				System.out.println("HTIS!");
+			}
+		}
+		
+		for( CameraScrolling4 obj : row4) {
+			if(obj.collided(player)) {
+				System.out.println("HTIS!");
+			}
+		}
 		
 		
 
@@ -132,6 +157,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			row2[i] = new CameraScrolling2(i*250, 500);
 		}
 		
+		for(int i = 0; i < row3.length; i++) {
+			row3[i] = new CameraScrolling3(i*250, 350);
+		}
+		
+		for(int i = 0; i < row4.length; i++) {
+			row4[i] = new CameraScrolling4(i*200, 100);
+		}
 		
 		
 	
