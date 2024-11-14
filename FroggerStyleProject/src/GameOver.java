@@ -2,12 +2,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class CameraScrolling4 {
+public class GameOver {
 	private Image forward;
 	private AffineTransform tx;
 	
@@ -18,13 +17,13 @@ public class CameraScrolling4 {
 	int vx, vy;
 	double scaleWidth = 1;
 	double scaleHeight = 1;
-	public CameraScrolling4() {
-		forward = getImage("/imgs/"+"new_boat.png"); //load the image for Tree
-		width = 60;
-		height = 60;
-		x = -width;
-		y = 300;
-		vx = 5;
+	public GameOver() {
+		forward = getImage("/imgs/"+"game_over.jpg"); //load the image for Tree
+		width = 600;
+		height = 900;
+		x = 0;
+		y = 0;
+		vx = 0;
 		vy = 0;
 		
 		tx = AffineTransform.getTranslateInstance(0,0);
@@ -32,59 +31,26 @@ public class CameraScrolling4 {
 		init(x,y);
 	}
 	
-	public int getVX() {
-		return vx;
-	}
-	
-
 	
 	
 	
-	
-	public CameraScrolling4(int x, int y) {
+	public GameOver(int x, int y) {
 		this();
 		this.x = x;
 		this.y = y;
 	}
-	
-	public boolean collided(Bron character) {
-		//represent each object as a rect 
-		//check if they are intersecting
-		Rectangle main = new Rectangle(
-				character.getX(),
-				character.getY(),
-				character.getWidth(),
-				character.getHeight()
-				);
-		Rectangle thisObject = new Rectangle(x-2,  y,  width-22,  height+10);
-		
-		
-		//user built in method to check intersection (collision)
-		return main.intersects(thisObject);
-				
-			
-				
-
-	}
-	
 	
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		x+=vx;
 		y+=vy;
 		
-		//for infinite scrolling - teleport to the other side
-		//once it leaves the other side
-		if(x > 600) {
-			x = -150;
-		}
-		
 		init(x,y);
 		g2.drawImage(forward, tx, null);
 			
 		if(Frame.debugging) {
 				g.setColor(Color.green);
-				g.drawRect(x-2,  y,  width-22,  height+10);
+				g.drawRect(x,  y,  width,  height);
 			}
 	}
 	
@@ -103,10 +69,6 @@ public class CameraScrolling4 {
 		}
 		return tempImage;
 	}
-
-
-
-
 	
  
 }

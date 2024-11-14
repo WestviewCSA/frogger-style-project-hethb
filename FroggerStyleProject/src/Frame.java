@@ -41,6 +41,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Sprite sp = new Sprite();
 	Background bg = new Background();
 	Bron player = new Bron();
+	GameOver end = new GameOver();
 	
 	//row of camera objects
 	CameraScrolling[] row1 = new CameraScrolling[10];
@@ -68,6 +69,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//camera.paint(g);
 		//camera2.paint(g);
 		player.paint(g);
+		
+		if(score < 0) {
+			end.paint(g);
+		}
 		
 		
 		//have the row1 objects paint on the screen
@@ -97,6 +102,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			if(obj.collided(player)) {
 				System.out.println("HITS!");
 				score -= 10;
+				
 			}
 		}
 		
@@ -248,6 +254,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			System.out.println(player.getY());
 			score += 10;
 			System.out.println(score);
+			System.out.println(height);
+			System.out.println(width);
 		}
 		
 		if(arg0.getKeyCode() == 40) {
