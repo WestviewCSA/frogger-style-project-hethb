@@ -16,10 +16,10 @@ public class CameraScrolling4 {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = .1;
-	double scaleHeight = .1;
+	double scaleWidth = .05;
+	double scaleHeight = .05;
 	public CameraScrolling4() {
-		forward = getImage("/imgs/"+"boat.png"); //load the image for Tree
+		forward = getImage("/imgs/"+"bboat.png"); //load the image for Tree
 		width = 60;
 		height = 60;
 		x = -width;
@@ -31,6 +31,12 @@ public class CameraScrolling4 {
 		
 		init(x,y);
 	}
+	
+	public int getVX() {
+		return vx;
+	}
+	
+
 	
 	
 	
@@ -50,7 +56,7 @@ public class CameraScrolling4 {
 				character.getWidth(),
 				character.getHeight()
 				);
-		Rectangle thisObject = new Rectangle(x-2,  y,  width-20,  height+22);
+		Rectangle thisObject = new Rectangle(x-2,  y,  width-22,  height+10);
 		
 		
 		//user built in method to check intersection (collision)

@@ -36,25 +36,25 @@ public class Bron {
 	 * collision detection with main character class
 	 */
 	
-	public boolean collided(Camera character) {
-		//represent each object as a rect 
-		//check if they are intersecting
-		Rectangle main = new Rectangle(
-				character.getX(),
-				character.getY(),
-				character.getWidth(),
-				character.getHeight()
-				);
-		Rectangle thisObject = new Rectangle(x,  y-1,  width,  height+35);
-		
-		
-		//user built in method to check intersection (collision)
-		return main.intersects(thisObject);
-				
-			
-				
-
-	}
+//	public boolean collided(Camera character) {
+//		//represent each object as a rect 
+//		//check if they are intersecting
+//		Rectangle main = new Rectangle(
+//				character.getX(),
+//				character.getY(),
+//				character.getWidth(),
+//				character.getHeight()
+//				);
+//		Rectangle thisObject = new Rectangle(x,  y-1,  width,  height+35);
+//		
+//		
+//		//user built in method to check intersection (collision)
+//		return main.intersects(thisObject);
+//				
+//			
+//				
+//
+//	}
 	
 	//getters
 	public int getX() {
@@ -74,11 +74,17 @@ public class Bron {
 	}
 	
 	public void setY(int bronY) {
-		bronY = y;
+		
+		y = bronY;
 	}
 	
 	public void setX(int bronX) {
-		bronX = x;
+		
+		x = bronX;
+	}
+	
+	public void setVX(int vX) {
+		vx = vX;
 	}
 	
 	public Bron(int x, int y) {

@@ -25,6 +25,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	//Timer related variables
 	int waveTimer = 5; //each wave of enemies is 20s
 	long ellapseTime = 0;
+	int score = 0;
+	String Score = "0";
 	Font timeFont = new Font("Courier", Font.BOLD, 70);
 	int level = 0;
 	
@@ -58,6 +60,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		
+		boolean riding = false;
+	
+		
 		//paint the other objects on the screen
 		bg.paint(g);
 		//camera.paint(g);
@@ -83,14 +88,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(CameraScrolling4 obj : row4) {
 			obj.paint(g);
 		}
-		
+		g.drawString(Score, 0, 0);
 	 
 		//sp.paint(g);
 		
 		//collision detection
 		for( CameraScrolling obj : row1) {
 			if(obj.collided(player)) {
-				System.out.println("HTIS!");
+				System.out.println("HITS!");
+				score -= 10;
 			}
 		}
 		
@@ -98,32 +104,43 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		for( CameraScrolling2 obj : row2) {
 			if(obj.collided(player)) {
-				System.out.println("HTIS!");
+				System.out.println("HITS!");
+				score -= 10;
 			}
 		}
 		
 		
-		
+		//winning
 		if(player.getY() <= 60) {
 			System.out.println("WIN!");
 			player.setX(Frame.width/2);
-			player.setY(Frame.height - height*2);
+			player.setY(670);
+			score += 50;
 			
 		}
 		
 		
 		for( CameraScrolling3 obj : row3) {
 			if(obj.collided(player)) {
-				System.out.println("HTIS!");
+				System.out.println("HITS!");
+				score -= 10;
 			}
 		}
 		
 		for( CameraScrolling4 obj : row4) {
 			if(obj.collided(player)) {
-				System.out.println("HTIS!");
+				System.out.println("RIDE");
+				if(obj.collided(player)) {
+					//int v = row4.getVX();
+					player.setVX(5);
+					riding = true;
+				}
 			}
 		}
 		
+		if(riding != true) {
+			player.setVX(0);
+		}
 		
 
 	}
@@ -229,6 +246,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			//move main character up
 			player.move(0);
 			System.out.println(player.getY());
+			score += 10;
+			System.out.println(score);
 		}
 		
 		if(arg0.getKeyCode() == 40) {
