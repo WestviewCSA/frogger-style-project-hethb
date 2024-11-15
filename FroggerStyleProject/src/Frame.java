@@ -48,10 +48,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	CameraScrolling2[] row2 = new CameraScrolling2[10];
 	CameraScrolling3[] row3 = new CameraScrolling3[10];
 	CameraScrolling4[] row4 = new CameraScrolling4[10];
-	
-	
-	
-	
+	river[] River = new river[3];
 	
 	//frame width/height
 	static int width = 600;
@@ -93,6 +90,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(CameraScrolling4 obj : row4) {
 			obj.paint(g);
 		}
+		
+		for(river obj : River) {
+			obj.paint(g);
+		}
+		
 		g.drawString(Score, 0, 0);
 	 
 		//sp.paint(g);
@@ -148,8 +150,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			player.setVX(0);
 		}
 		
+		
+		for( river obj : River) {
+			if(obj.collided(player)) {
+				System.out.println("DROWN");
+				score -= 10;
+			}
+		}
 
 	}
+
 	public static void main(String[] arg) {
 		Frame f = new Frame();
 		
@@ -172,7 +182,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		 */
 		
 		for(int i = 0; i < row1.length; i++) {
-			row1[i] = new CameraScrolling(i*250 ,200);
+			row1[i] = new CameraScrolling(i*250 ,250);
 			
 		}
 		
@@ -187,6 +197,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(int i = 0; i < row4.length; i++) {
 			row4[i] = new CameraScrolling4(i*200, 100);
 		}
+		
+//		//Jiten added code to initialize the elements of River array
+		for(int i = 0; i < River.length; i++) {
+			River[i] = new river(i*100, 150);
+		}	
+			
 		
 		
 	

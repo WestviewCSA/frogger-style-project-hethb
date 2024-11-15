@@ -16,8 +16,8 @@ public class Bron {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = 1;
-	double scaleHeight = 1;
+	double scaleWidth = .75;
+	double scaleHeight = .75;
 	public Bron() {
 		forward = getImage("/imgs/"+"bronnn2.png"); //load the image for Tree
 		width = 60;
@@ -123,7 +123,7 @@ public class Bron {
 			
 		if(Frame.debugging) {
 				g.setColor(Color.green);
-				g.drawRect(x,  y-1,  width,  height+35);
+				g.drawRect(x,  y-1,  width-15,  height+10);
 			}
 	}
 	

@@ -56,7 +56,7 @@ public class CameraScrolling4 {
 				character.getWidth(),
 				character.getHeight()
 				);
-		Rectangle thisObject = new Rectangle(x-2,  y,  width-22,  height+10);
+		Rectangle thisObject = new Rectangle(x+5,  y+15,  width+30,  height+10);
 		
 		
 		//user built in method to check intersection (collision)
@@ -84,7 +84,7 @@ public class CameraScrolling4 {
 			
 		if(Frame.debugging) {
 				g.setColor(Color.green);
-				g.drawRect(x-2,  y,  width-22,  height+10);
+				g.drawRect(x+5,  y+15,  width+30,  height+10);
 			}
 	}
 	
