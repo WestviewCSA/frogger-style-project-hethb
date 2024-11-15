@@ -36,6 +36,9 @@ public class CameraScrolling4 {
 		return vx;
 	}
 	
+	public int getX() {
+		return x;
+	}
 
 	
 	

@@ -31,6 +31,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	int level = 0;
 	
 	
+	
 	Font myFont = new Font("Courier", Font.BOLD, 40);
 	SimpleAudioPlayer backgroundMusic = new SimpleAudioPlayer("scifi.wav", false);
 //	Music soundBang = new Music("bang.wav", false);
@@ -48,7 +49,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	CameraScrolling2[] row2 = new CameraScrolling2[10];
 	CameraScrolling3[] row3 = new CameraScrolling3[10];
 	CameraScrolling4[] row4 = new CameraScrolling4[10];
-	river[] River = new river[3];
+	river[] River = new river[20];
 	
 	//frame width/height
 	static int width = 600;
@@ -87,13 +88,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			obj.paint(g);
 		}
 		
+		for(river obj : River) {
+			obj.paint(g);
+		}
+		
+		
 		for(CameraScrolling4 obj : row4) {
 			obj.paint(g);
 		}
 		
-		for(river obj : River) {
-			obj.paint(g);
-		}
+		
 		
 		g.drawString(Score, 0, 0);
 	 
@@ -146,17 +150,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			}
 		}
 		
+		
+		
 		if(riding != true) {
 			player.setVX(0);
 		}
 		
-		
-		for( river obj : River) {
-			if(obj.collided(player)) {
-				System.out.println("DROWN");
-				score -= 10;
+		if(player.getX() > 90 && player.getX() < 150) {
+			for( river obj : River) {
+				if(obj.collided(player)) {
+					System.out.println("DROWN");
+					score -= 10;
+				}
 			}
 		}
+		
+		
+	
 
 	}
 
@@ -167,7 +177,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public Frame() {
 		JFrame f = new JFrame("Duck Hunt");
-		f.setSize(new Dimension(width, height));
+		f.setSize(new Dimension(width, height+ 200));
 		f.setBackground(Color.white);
 		f.add(this);
 		f.setResizable(false);
@@ -200,7 +210,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 //		//Jiten added code to initialize the elements of River array
 		for(int i = 0; i < River.length; i++) {
-			River[i] = new river(i*100, 150);
+			River[i] = new river(i*100, 100);
 		}	
 			
 		
@@ -267,11 +277,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if(arg0.getKeyCode() == 38) {
 			//move main character up
 			player.move(0);
-			System.out.println(player.getY());
+			//System.out.println(player.getY());
 			score += 10;
-			System.out.println(score);
-			System.out.println(height);
-			System.out.println(width);
+//			System.out.println(score);
+//			System.out.println(height);
+//			System.out.println(width);
+			
 		}
 		
 		if(arg0.getKeyCode() == 40) {
