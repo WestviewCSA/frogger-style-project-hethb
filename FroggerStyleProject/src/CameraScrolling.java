@@ -95,7 +95,7 @@ public class CameraScrolling {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return tempImage;
+		return tempImage; 
 	}
 
 
