@@ -66,7 +66,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		bg.paint(g);
 		//camera.paint(g);
 		//camera2.paint(g);
-		player.paint(g);
+	
 		
 		if(score < 0) {
 			end.paint(g);
@@ -97,6 +97,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			obj.paint(g);
 		}
 		
+		
+		player.paint(g);
 		
 		
 		g.drawString(Score, 0, 0);
