@@ -133,6 +133,21 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 		}
 		
+		//losing
+		if(player.getX() <= 0 || player.getX() >= 600) {
+			System.out.println("Lose");
+			player.setX(Frame.width/2);
+			player.setY(670);
+			score -= 50;
+		}
+		
+		if(player.getY() >= 800) {
+			System.out.println("Lose");
+			player.setX(Frame.width/2);
+			player.setY(670);
+			score -= 50;
+		}
+		
 		
 		for( CameraScrolling3 obj : row3) {
 			if(obj.collided(player)) {
