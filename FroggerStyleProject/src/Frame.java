@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,8 +49,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	CameraScrolling[] row1 = new CameraScrolling[10];
 	CameraScrolling2[] row2 = new CameraScrolling2[10];
 	CameraScrolling3[] row3 = new CameraScrolling3[10];
+	ArrayList<CameraScrolling3> row3List = new ArrayList<CameraScrolling3>();
 	CameraScrolling4[] row4 = new CameraScrolling4[10];
 	river[] River = new river[20];
+	ArrayList<LifeChange> lives = new ArrayList<LifeChange>();
 	
 	//frame width/height
 	static int width = 600;
@@ -88,7 +91,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			obj.paint(g);
 		}
 		
+		for(CameraScrolling3 obj : row3List) {
+			obj.paint(g);
+		}
+		
 		for(river obj : River) {
+			obj.paint(g);
+		}
+		
+		for(LifeChange obj : lives) {
 			obj.paint(g);
 		}
 		
@@ -229,9 +240,19 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for(int i = 0; i < River.length; i++) {
 			River[i] = new river(i*100, 100);
 		}	
+		
+		for(int i = 0; i < 10; i++) {
+			//run the body 10x
+			this.row3List.add(new CameraScrolling3(i*180, 900));
+		}
 			
+		for(int i = 0; i < 6; i++) {
+			this.lives.add(new LifeChange(i*40, 10));
+		}
 		
-		
+		if(lives.size() > 0) {
+			lives.remove(lives.size() - 1);
+		}
 	
 		
 		//the cursor image must be outside of the src folder
