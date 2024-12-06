@@ -37,13 +37,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	SimpleAudioPlayer backgroundMusic = new SimpleAudioPlayer("scifi.wav", false);
 //	Music soundBang = new Music("bang.wav", false);
 //	Music soundHaha = new Music("haha.wav", false);
-	
+//	
 	Camera camera = new Camera();
 	Camera camera2 = new Camera();
 	Sprite sp = new Sprite();
 	Background bg = new Background();
 	Bron player = new Bron();
 	GameOver end = new GameOver();
+	lose loser = new lose();
 	
 	//row of camera objects
 	CameraScrolling[] row1 = new CameraScrolling[10];
@@ -121,6 +122,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			if(obj.collided(player)) {
 				System.out.println("HITS!");
 				score -= 10;
+				player.setX(Frame.width/2);
+				player.setY(player.getY() + 5);
 				
 			}
 		}
@@ -131,7 +134,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			if(obj.collided(player)) {
 				System.out.println("HITS!");
 				score -= 10;
-			}
+				player.setX(Frame.width/2);
+				player.setY(player.getY() + 5);			}
 		}
 		
 		
@@ -139,7 +143,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if(player.getY() <= 60) {
 			System.out.println("WIN!");
 			player.setX(Frame.width/2);
-			player.setY(670);
+			player.setY(900);
 			score += 50;
 			
 		}
@@ -147,15 +151,18 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//losing
 		if(player.getX() <= 0 || player.getX() >= 600) {
 			System.out.println("Lose");
+			loser.paint(g);
 			player.setX(Frame.width/2);
-			player.setY(670);
+			player.setY(900);
 			score -= 50;
+			
 		}
 		
-		if(player.getY() >= 800) {
+		if(player.getY() >= 901) {
 			System.out.println("Lose");
+			loser.paint(g);
 			player.setX(Frame.width/2);
-			player.setY(670);
+			player.setY(900);
 			score -= 50;
 		}
 		
@@ -163,6 +170,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		for( CameraScrolling3 obj : row3) {
 			if(obj.collided(player)) {
 				System.out.println("HITS!");
+				player.setX(Frame.width/2);
+				player.setY(player.getY() + 5);				
 				score -= 10;
 			}
 		}
@@ -178,6 +187,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			}
 		}
 		
+		for(CameraScrolling3 obj : row3List) {
+			if(obj.collided(player)) {
+				System.out.println("HITS!");
+				player.setX(Frame.width/2);
+				player.setY(player.getY() + 5);				
+				score -= 10;
+			}
+		}
+		
 		
 		
 		if(riding != true) {
@@ -188,6 +206,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			for( river obj : River) {
 				if(obj.collided(player)) {
 					System.out.println("DROWN");
+					player.setX(Frame.width/2);
+					player.setY(player.getY() + 5);					
 					score -= 10;
 				}
 			}
@@ -243,11 +263,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		for(int i = 0; i < 10; i++) {
 			//run the body 10x
-			this.row3List.add(new CameraScrolling3(i*180, 900));
+			this.row3List.add(new CameraScrolling3(i*180, 700));
 		}
 			
 		for(int i = 0; i < 6; i++) {
-			this.lives.add(new LifeChange(i*40, 10));
+			//this.lives.add(new LifeChange(i*40, 10));
 		}
 		
 		if(lives.size() > 0) {
