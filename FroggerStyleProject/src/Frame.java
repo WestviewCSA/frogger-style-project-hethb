@@ -30,11 +30,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	String Score = "0";
 	Font timeFont = new Font("Courier", Font.BOLD, 70);
 	int level = 0;
+	int loseCount = 0;
+	int winCount = 0;
+	String winner = "YOU WIN!";
 	
 	
 	
 	Font myFont = new Font("Courier", Font.BOLD, 40);
-	SimpleAudioPlayer backgroundMusic = new SimpleAudioPlayer("scifi.wav", false);
+	SimpleAudioPlayer backgroundMusic = new SimpleAudioPlayer("scifi.wav", true);
 //	Music soundBang = new Music("bang.wav", false);
 //	Music soundHaha = new Music("haha.wav", false);
 //	
@@ -111,7 +114,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		
 		player.paint(g);
-		
+
+		g.drawString(score+"", 10, 10);
 		
 		g.drawString(Score, 0, 0);
 	 
@@ -124,6 +128,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				score -= 10;
 				player.setX(Frame.width/2);
 				player.setY(player.getY() + 5);
+				loseCount++;
 				
 			}
 		}
@@ -135,7 +140,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				System.out.println("HITS!");
 				score -= 10;
 				player.setX(Frame.width/2);
-				player.setY(player.getY() + 5);			}
+				player.setY(player.getY() + 5);
+				loseCount++
+			}
 		}
 		
 		
@@ -145,25 +152,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			player.setX(Frame.width/2);
 			player.setY(900);
 			score += 50;
+			winCount++;
 			
 		}
 		
 		//losing
 		if(player.getX() <= 0 || player.getX() >= 600) {
 			System.out.println("Lose");
-			loser.paint(g);
 			player.setX(Frame.width/2);
 			player.setY(900);
 			score -= 50;
+			loseCount++;
 			
 		}
 		
 		if(player.getY() >= 901) {
 			System.out.println("Lose");
-			loser.paint(g);
 			player.setX(Frame.width/2);
 			player.setY(900);
 			score -= 50;
+			loseCount++;
 		}
 		
 		
@@ -173,6 +181,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				player.setX(Frame.width/2);
 				player.setY(player.getY() + 5);				
 				score -= 10;
+				loseCount++;
 			}
 		}
 		
@@ -193,6 +202,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				player.setX(Frame.width/2);
 				player.setY(player.getY() + 5);				
 				score -= 10;
+				loseCount++;
 			}
 		}
 		
@@ -209,8 +219,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 					player.setX(Frame.width/2);
 					player.setY(player.getY() + 5);					
 					score -= 10;
+					loseCount++
 				}
 			}
+		}
+
+		if(loseCount > 5){
+			loser.paint(g);
+		}
+
+		if(winCount > 3){
+			g.drawString(winner+"", width/2, height/2);
 		}
 		
 		
