@@ -16,14 +16,14 @@ public class lose {
 
 	int x, y;
 	int vx, vy;
-	double scaleWidth = .5;
-	double scaleHeight = .5;
+	double scaleWidth = 1;
+	double scaleHeight = 1;
 	public lose() {
 		forward = getImage("/imgs/"+"game-over.png"); //load the image for Tree
 		width = 60;
 		height = 60;
-		x = Frame.width/2;
-		y = Frame.height - height*2;
+		x = 0;
+		y = 0;
 		vx = 0;
 		vy = 0;
 		
